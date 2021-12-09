@@ -7,12 +7,14 @@
 body {
     background-color:cornsilk;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    text-shadow: 2px 2px rgba(0, 0, 0, 0.15);
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.10);
     color: darkslategray;
+    line-height: 1.5;
 }
 
 header {
     display: flex;
+    flex-wrap: wrap-reverse;
     justify-content: space-around;
     align-items: center;
     background-color:lightcoral;
@@ -20,5 +22,60 @@ header {
 }
 
 h1 {
-    margin:20px;
+    font-size: 3rem;
+    margin: 1rem 0 1rem 0;
 }
+
+h2 {
+    font-size: 1rem;
+    padding: 1rem;
+}
+
+a {
+    font-size: 2rem;
+    text-decoration: none;
+    list-style: none;
+    color: inherit;
+}
+
+
+button {
+    width: 20rem;
+    padding: 0.75rem;
+    font-size: 2rem;
+    border-radius: 2rem;
+    margin-top: 1rem;
+    background-color: rgba(82, 83, 83,1);
+    background-image: linear-gradient(45deg, rgba(204, 219, 219, 0.5), rgba(164, 207, 207, 0.5));
+    transition: all .3s ease-in-out;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.10);
+    color: darkslategray;
+}
+
+button:hover {
+    background-color: lightskyblue;
+}
+.quiz {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 18em;
+    padding-top: 10%;
+    
+
+}
+
+.result {
+    margin-top: 1.5rem;
+    border-top: darkslategray solid 2px;
+    width: 18em;
+    font-style: italic;
+    letter-spacing: 0.1em;
+    color: darkslategray;
+}
+
+
