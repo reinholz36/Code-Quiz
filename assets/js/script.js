@@ -1,18 +1,28 @@
+const topHeader = document.getElementById("top");
+const countDown = document.getElementById("countdown");
 const quizBox = document.getElementById("quizContainer");
 const resultBox = document.getElementById("result");
 const submitBtn = document.getElementById("btn-1");
 const mainBox = document.getElementById("mainContainer");
-console.log("Testing");
-console.log("quizBox", quizBox);
-console.log("resultBox", resultBox);
-console.log("submitBtn", submitBtn);
+// const trueCount = 
+const timeLeft = 75; 
 
 
-// var openStatement = document.createElement("h2");
-quizBox.append("Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your remaining time by ten seconds!");
+
+
 
  // create getting started elements
  function quizEnter () {
+//top timer display 
+var countDown = document.createElement("div")
+countDown.textContent = "Timer: "; 
+countDown.className = "timer";
+topHeader.appendChild(countDown); 
+//opening statement
+var quizBox = document.createElement("h2")
+quizBox.textContent = "Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your remaining time by ten seconds!";
+quizBox.className = "h2";
+mainBox.appendChild(quizBox);   
 //start button
  var submitBtn = document.createElement("button");
  submitBtn.textContent = "Start Quiz";
@@ -30,6 +40,7 @@ quizEnter();
 
 function runGame () {
     console.log("At least some things are coming together.")
+
 };
 
 
