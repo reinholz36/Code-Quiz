@@ -9,27 +9,40 @@
 </head>
 <body>
     <header>
-        <nav><a href="./high-score.html">High-Score</a></nav>
+        <nav>
+            <a href="./high-score.html">
+                High-Score
+            </a>
+        </nav>
         <h1>Coding Quiz</h1>
-        <div class="timer" id="countdown"></div>
-    </header>
-    <main>
-        <div class="quiz">
-            <h2 class="full">Try to answer the following code-realted questions within the time limit.
-                Keep in mind that incorrect answers will penalize your score/time
-                by ten seconds!</h2>
-            <button>Start Quiz</button>
-
-            <div id="result" class="result">
-                <h2>Wrong Answer!</h2>
-            </div>
+        <div class="timer" id="countdown">
+            Timer:
         </div>
-        
-        
-        
-    </main>
-    
+    </header>
+    <!-- Quiz content section-->
+    <main class="quiz" id="mainContainer">
+        <!-- content template -->
+        <h2 id="quizContainer">
+            <!-- Try to answer the following code-related questions within the time limit.
+            Keep in mind that incorrect answers will penalize your remaining time
+            by ten seconds! -->
+        </h2>
+           
+        <!-- start button template -->
+        <button id="btn-1">
+            <!-- <button id="btn-1">
+                Start Quiz
+            </button> -->
+        </button>
 
+    <!-- Result section -->
+        <div id="result">
+            <!-- <h2 id="result">
+                Wrong Answer!
+            </h2> -->
+        </div>
+    </main>
+        
     <footer>
 
         <script src="./assets/js/script.js"></script>
