@@ -1,49 +1,76 @@
+//Pulls id and sets a variable 
 var topHeader = document.getElementById("top");
 var countDown = document.getElementById("countdown");
 var quizBox = document.getElementById("quizContainer");
 var resultBox = document.getElementById("result");
 var submitBtn = document.getElementById("btn-1")
 var mainBox = document.getElementById("mainContainer");
-// var trueCount = 
+var trueCount = 0
 
 
+// creates getting started elements
+function quizEnter () {
+        
+    //top timer display 
+    var countDown = document.createElement("div")
+    countDown.textContent = "Timer";
+    countDown.className = "timer";
+    topHeader.appendChild(countDown); 
 
+    //opening statement
+    var quizBox = document.createElement("h2")
+    quizBox.textContent = "Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your remaining time by ten seconds!";
+    quizBox.className = "h2";
+    mainBox.appendChild(quizBox);   
 
+    //start button
+    var submitBtn = document.createElement("button");
+    submitBtn.textContent = "Start Quiz";
+    submitBtn.className = "btn";
+    submitBtn.addEventListener('click', runGame)
+    mainBox.appendChild(submitBtn);
 
-
-
- // create getting started elements
- function quizEnter () {
-//top timer display 
-var countDown = document.createElement("div")
-countDown.textContent = "Timer";
-countDown.className = "timer";
-topHeader.appendChild(countDown); 
-
-//opening statement
-var quizBox = document.createElement("h2")
-quizBox.textContent = "Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your remaining time by ten seconds!";
-quizBox.className = "h2";
-mainBox.appendChild(quizBox);   
-
-//start button
- var submitBtn = document.createElement("button");
- submitBtn.textContent = "Start Quiz";
- submitBtn.className = "btn";
- submitBtn.addEventListener('click', runGame)
- mainBox.appendChild(submitBtn);
-
-//Answer Result display
- var resultBox = document.createElement("h2");
- resultBox.textContent = "Wrong Answer!";
- resultBox.className = "result";
- mainBox.appendChild(resultBox);
+    //Answer Result display
+    var resultBox = document.createElement("h2");
+    resultBox.textContent = "Wrong Answer!";
+    resultBox.className = "result";
+    mainBox.appendChild(resultBox);
 };
-console.log(submitBtn);
+// Invokes getting started elements
 quizEnter();
+
+//clears getting started elements along with after each question is answered
+function clearElement () {
+    mainBox.innerHTML = '';
+    // mainBox.removeChild(resultBox);
+    // quizBox.textContent = ""
+    // mainBox.appendChild(quizBox); 
+    // resultBox.textContent = ""
+    // mainBox.appendChild(resultBox); 
+}
+
+//populates quiz questions and elements
+function displayQuestion () {
+//display quesion from array
+//display answer choices from array
+//make the answer choices into buttons
+//add eventlistiners for if true or false function 
+}
+
+// true or false function from eventlistener button 
+// If true log truecount + 1
+// updated resultBox "Correct Answer!"
+// wait 2 seconds
+// proceed to next question 
+// If false subtract -10 from timeLeft
+// updated resultBox "Wrong Answer!"
+// proceed to next question
+
 
 //Countdown function 
 function runGame () {
+    clearElement()
+    
     let timeLeft = 75; 
 
    timeLess = setInterval(() => {
@@ -51,7 +78,7 @@ function runGame () {
             console.log("timeLeft", timeLeft);
             countDown.textContent = ''; 
             countDown.className = "timer";
-            clearInterval(timeLess);
+            clearInterval(timeLeft);
         }
         else {
             countDown.textContent = timeLeft
@@ -59,7 +86,19 @@ function runGame () {
         }
     }, 1000);
 
+//revel some other elements
 };
+
+
+
+
+
+
+
+
+
+
+
 
 //questions array 
 var questionArray = [
