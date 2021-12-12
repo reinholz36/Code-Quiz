@@ -1,106 +1,17 @@
-//Pulls id and sets a variable 
+//pulls id and sets a variable 
 var topHeader = document.getElementById("top");
 var countDown = document.getElementById("countdown");
 var quizBox = document.getElementById("quizContainer");
 var resultBox = document.getElementById("result");
-var submitBtn = document.getElementById("btn-1")
+var buttonOne = document.getElementById("btn-1");
+var buttonTwo = document.getElementById("btn-2");
+var buttonThree = document.getElementById("btn-3");
+var buttonFour = document.getElementById("btn-4");
 var mainBox = document.getElementById("mainContainer");
+var questionIndex = 0
 var trueCount = 0
 
-
-// creates getting started elements
-function quizEnter () {
-        
-    //top timer display 
-    var countDown = document.createElement("div")
-    countDown.textContent = "Timer";
-    countDown.className = "timer";
-    topHeader.appendChild(countDown); 
-
-    //opening statement
-    var quizBox = document.createElement("h2")
-    quizBox.textContent = "Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your remaining time by ten seconds!";
-    quizBox.className = "h2";
-    mainBox.appendChild(quizBox);   
-
-    //start button
-    var submitBtn = document.createElement("button");
-    submitBtn.textContent = "Start Quiz";
-    submitBtn.className = "btn";
-    submitBtn.addEventListener('click', runGame)
-    mainBox.appendChild(submitBtn);
-
-    //Answer Result display
-    var resultBox = document.createElement("h2");
-    // resultBox.textContent = "Wrong Answer!";
-    resultBox.className = "result";
-    mainBox.appendChild(resultBox);
-};
-// Invokes getting started elements
-quizEnter();
-
-//clears getting started elements along with after each question is answered
-function clearElement () {
-    mainBox.innerHTML = '';
-    // mainBox.removeChild(resultBox);
-    // quizBox.textContent = ""
-    // mainBox.appendChild(quizBox); 
-    // resultBox.textContent = ""
-    // mainBox.appendChild(resultBox); 
-}
-
-//populates quiz questions and elements
-function displayQuestion () {
-//display quesion from array
-//display answer choices from array
-//make the answer choices into buttons
-//add eventlistiners for if true or false function 
-}
-
-// true or false function from eventlistener button 
-// If true log truecount + 1
-// updated resultBox "Correct Answer!"
-// wait 2 seconds
-// proceed to next question 
-// If false subtract -10 from timeLeft
-// updated resultBox "Wrong Answer!"
-// proceed to next question
-
-
-//Countdown function 
-function runGame () {
-    clearElement()
-    
-    let timeLeft = 75; 
-
-   timeLess = setInterval(() => {
-        if (timeLeft <= 0) {
-            console.log("timeLeft", timeLeft);
-            countDown.textContent = ''; 
-            countDown.className = "timer";
-            clearInterval(timeLeft);
-        }
-        else {
-            countDown.textContent = timeLeft
-            timeLeft--
-        }
-    }, 1000);
-
-//revel some other elements
-};
-
-
-
-
-
-
-
-
-
-
-
-
-//questions array 
+//questions array start
 var questionArray = [
     {
         question: "When setting up a countdown timer for a coding quiz which of the following would be helpful?",
@@ -224,5 +135,133 @@ var questionArray = [
     },
 
 ];
+//questions array end
+
+// creates getting started elements
+function quizEnter () {
+        
+    //top timer display 
+    var countDown = document.createElement("div")
+    countDown.textContent = "Timer";
+    countDown.className = "timer";
+    topHeader.appendChild(countDown); 
+
+    //opening statement
+    var quizBox = document.createElement("h2")
+    quizBox.textContent = "Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your remaining time by ten seconds!";
+    quizBox.className = "h2";
+    mainBox.appendChild(quizBox);   
+
+    //start button
+    var buttonOne = document.createElement("button");
+    buttonOne.textContent = "Start Quiz";
+    buttonOne.className = "btn";
+    buttonOne.addEventListener('click', runGame)
+    mainBox.appendChild(buttonOne);
+
+    //Answer Result display
+    var resultBox = document.createElement("h2");
+    // resultBox.textContent = "Wrong Answer!";
+    resultBox.className = "result";
+    mainBox.appendChild(resultBox);
+};
+// Invokes getting started elements
+quizEnter();
+
+//clears getting started elements along with after each question is answered
+function clearElement () {
+    mainBox.innerHTML = '';
+    // mainBox.removeChild(resultBox);
+    // quizBox.textContent = ""
+    // mainBox.appendChild(quizBox); 
+    // resultBox.textContent = ""
+    // mainBox.appendChild(resultBox); 
+}
+
+//populates quiz questions and elements
+function displayQuestion () {
+    clearElement()
+    // quizBox.textContent = questionArray.question
+    var quizBox = document.createElement("h2")
+    quizBox.textContent = questionArray[questionIndex].question;
+    quizBox.className = "h2";
+    mainBox.appendChild(quizBox); 
+
+    var buttonOne = document.createElement("button");
+    buttonOne.textContent = questionArray[questionIndex].choices[0];
+    buttonOne.className = "btn small";
+    buttonOne.addEventListener('click', runGame)
+    mainBox.appendChild(buttonOne);
+
+    var buttonTwo = document.createElement("button");
+    buttonTwo.textContent = questionArray[questionIndex].choices[1];
+    buttonTwo.className = "btn small";
+    buttonTwo.addEventListener('click', runGame)
+    mainBox.appendChild(buttonTwo);
+
+    var buttonThree = document.createElement("button");
+    buttonThree.textContent = questionArray[questionIndex].choices[2];
+    buttonThree.className = "btn small";
+    buttonThree.addEventListener('click', runGame)
+    mainBox.appendChild(buttonThree);
+
+    var buttonFour = document.createElement("button");
+    buttonFour.textContent = questionArray[questionIndex].choices[3];
+    buttonFour.className = "btn small";
+    buttonFour.addEventListener('click', runGame)
+    mainBox.appendChild(buttonFour);
+//display quesion from array
+//display answer choices from array
+//make the answer choices into buttons
+//add eventlistiners for if true or false function 
+}
+
+// true or false function from eventlistener button 
+// If true log truecount + 1
+// updated resultBox "Correct Answer!"
+// wait 2 seconds
+// clearElement
+// proceed to next question 
+// If false subtract -10 from timeLeft
+// updated resultBox "Wrong Answer!"
+//clearElement
+// proceed to next question
 
 
+//Countdown function 
+function runGame () {
+    
+    displayQuestion ()
+    
+    let timeLeft = 75; 
+
+   timeLess = setInterval(() => {
+        if (timeLeft <= 0) {
+            console.log("timeLeft", timeLeft);
+            countDown.textContent = ''; 
+            countDown.className = "timer";
+            clearInterval(timeLeft);
+        }
+        else {
+            countDown.textContent = timeLeft
+            timeLeft--
+        }
+    }, 1000);
+
+//revel some other elements
+};
+
+
+
+
+
+var list = [1,2,3,4,5]
+
+
+
+console.log("questionArray", questionArray);
+
+
+
+
+console.log("questionArray", questionArray);
