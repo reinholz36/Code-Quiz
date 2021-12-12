@@ -3,18 +3,13 @@ var topHeader = document.getElementById("top");
 var countDown = document.getElementById("countdown");
 var quizBox = document.getElementById("quizContainer");
 var resultBox = document.getElementById("result");
+var buttonStart = document.getElementById("btn-start");
 var buttonOne = document.getElementById("btn-1");
 var buttonTwo = document.getElementById("btn-2");
 var buttonThree = document.getElementById("btn-3");
 var buttonFour = document.getElementById("btn-4");
 var mainBox = document.getElementById("mainContainer");
-var questionIndex = 0
-var trueCount = 0
-var totalArray = questions.length
-var cycleQuestions = false
-var totalPoints = {
-    points:0 
-}
+
 
 //questions array start
 var questionArray = [
@@ -142,6 +137,15 @@ var questionArray = [
 ];
 //questions array end
 
+//set variables for array, question cycling, and total points (Note: this section needs to be after array!)
+var questionIndex = 0
+var trueCount = 0
+var totalArray = questionArray.length
+var cycleQuestions = false
+var totalPoints = {
+    points:0 
+}
+
 // creates getting started elements
 function quizEnter () {
         
@@ -158,11 +162,11 @@ function quizEnter () {
     mainBox.appendChild(quizBox);   
 
     //start button
-    var buttonOne = document.createElement("button");
-    buttonOne.textContent = "Start Quiz";
-    buttonOne.className = "btn";
-    buttonOne.addEventListener('click', runGame)
-    mainBox.appendChild(buttonOne);
+    var buttonStart = document.createElement("button");
+    buttonStart.textContent = "Start Quiz";
+    buttonStart.className = "btn";
+    buttonStart.addEventListener('click', runGame)
+    mainBox.appendChild(buttonStart);
 
     //Answer Result display
     var resultBox = document.createElement("h2");
@@ -226,7 +230,7 @@ function displayQuestion () {
     buttonFour.className = "btn small";
     buttonFour.addEventListener('click', runGame)
     mainBox.appendChild(buttonFour);
-    }
+}
 //display quesion from array
 //display answer choices from array
 //make the answer choices into buttons
@@ -243,7 +247,6 @@ function displayQuestion () {
 // updated resultBox "Wrong Answer!"
 //clearElement
 // proceed to next question
-
 
 //Countdown function 
 function runGame () {
@@ -273,6 +276,7 @@ function runGame () {
 
 //revel some other elements
 };
+
 
 
 
