@@ -9,11 +9,13 @@ var buttonTwo = document.getElementById("btn-2");
 var buttonThree = document.getElementById("btn-3");
 var buttonFour = document.getElementById("btn-4");
 var mainBox = document.getElementById("mainContainer");
+var initialBox = document.getElementById("initial");
 let timeLeft = 75;
 var questionIndex = 0;
 var trueCount = 0;
 var cycleQuestions = false;
-var totalPoints = 0
+var totalPoints = 0;
+var scoreArray = [];
 
 //questions array start
 var questionArray = [
@@ -172,8 +174,7 @@ function quizEnter () {
     resultBox.className = "result";
     mainBox.appendChild(resultBox);
 };
-// Invokes getting started elements
-quizEnter();
+
 
 //clears getting started elements along with after each question is answered
 function clearElement () {
@@ -182,54 +183,56 @@ function clearElement () {
 
 //populates quiz questions and elements
 function displayQuestion () {
-    clearElement()
-    console.log("we here!", questionIndex);
-    
-    if (cycleQuestions === true) {
-        questionIndex++;
+
+    if (timeLeft > 0) {
+        clearElement()
+        console.log("we here!", questionIndex);
+        
+        if (cycleQuestions === true) {
+            questionIndex++;
+        }
+
+        if (questionIndex === totalArray) {
+            clearInterval(timeLess);
+            countDown.textContent = ''; 
+            gameOver ()
+            //add quiz stop function invokation 
+        } else {
+            var quizBox = document.createElement("h2")
+            quizBox.textContent = questionArray[questionIndex].question;
+            quizBox.className = "h2";
+            mainBox.appendChild(quizBox); 
+
+            var buttonOne = document.createElement("button");
+            buttonOne.textContent = "1. " + questionArray[questionIndex].choices[0];
+            buttonOne.className = "btn small";
+            buttonOne.setAttribute("id", "btn-1")
+            buttonOne.addEventListener('click', answerClick)
+            mainBox.appendChild(buttonOne);
+
+            var buttonTwo = document.createElement("button");
+            buttonTwo.textContent = "2. " + questionArray[questionIndex].choices[1];
+            buttonTwo.className = "btn small";
+            buttonTwo.setAttribute("id", "btn-2")
+            buttonTwo.addEventListener('click', answerClick)
+            mainBox.appendChild(buttonTwo);
+
+            var buttonThree = document.createElement("button");
+            buttonThree.textContent = "3. " + questionArray[questionIndex].choices[2];
+            buttonThree.className = "btn small";
+            buttonThree.setAttribute("id", "btn-3")
+            buttonThree.addEventListener('click', answerClick)
+            mainBox.appendChild(buttonThree);
+            console.log("buttonThree", buttonThree);
+
+            var buttonFour = document.createElement("button");
+            buttonFour.textContent = "4. " + questionArray[questionIndex].choices[3];
+            buttonFour.className = "btn small";
+            buttonFour.setAttribute("id", "btn-4")
+            buttonFour.addEventListener('click', answerClick)
+            mainBox.appendChild(buttonFour);
+        }   
     }
-
-    if (questionIndex === totalArray) {
-        clearInterval(timeLess);
-        countDown.textContent = ''; 
-        //add quiz stop function invokation 
-    }
-    
-    else {
-    var quizBox = document.createElement("h2")
-    quizBox.textContent = questionArray[questionIndex].question;
-    quizBox.className = "h2";
-    mainBox.appendChild(quizBox); 
-
-    var buttonOne = document.createElement("button");
-    buttonOne.textContent = "1. " + questionArray[questionIndex].choices[0];
-    buttonOne.className = "btn small";
-    buttonOne.setAttribute("id", "btn-1")
-    buttonOne.addEventListener('click', answerClick)
-    mainBox.appendChild(buttonOne);
-
-    var buttonTwo = document.createElement("button");
-    buttonTwo.textContent = "2. " + questionArray[questionIndex].choices[1];
-    buttonTwo.className = "btn small";
-    buttonTwo.setAttribute("id", "btn-2")
-    buttonTwo.addEventListener('click', answerClick)
-    mainBox.appendChild(buttonTwo);
-
-    var buttonThree = document.createElement("button");
-    buttonThree.textContent = "3. " + questionArray[questionIndex].choices[2];
-    buttonThree.className = "btn small";
-    buttonThree.setAttribute("id", "btn-3")
-    buttonThree.addEventListener('click', answerClick)
-    mainBox.appendChild(buttonThree);
-    console.log("buttonThree", buttonThree);
-
-    var buttonFour = document.createElement("button");
-    buttonFour.textContent = "4. " + questionArray[questionIndex].choices[3];
-    buttonFour.className = "btn small";
-    buttonFour.setAttribute("id", "btn-4")
-    buttonFour.addEventListener('click', answerClick)
-    mainBox.appendChild(buttonFour);
-}
 }
 
 //Determines if answer selection matches correct answer from array
@@ -272,6 +275,26 @@ var answerClick = function(event) {
     console.log("answerClick", event.target.id);
 }
 
+function gameOver () {
+    clearElement()
+    clearInterval(timeLess);
+    var quizBox = document.createElement("h2")
+    quizBox.textContent = "You've finished the quiz and answered " + totalPoints + " questions correctly! Enter your initials below to save your score";
+    quizBox.className = "h2";
+    mainBox.appendChild(quizBox); 
+    var initialBox = document.createElement("input")
+    initialBox.className = "input";
+    initialBox.setAttribute("name", "initial");
+    mainBox.appendChild(initialBox); 
+
+    var buttonOne = document.createElement("button");
+    buttonOne.textContent = "Submit Score and Initials"
+    buttonOne.className = "btn small";
+    buttonOne.setAttribute("id", "btn-1");
+    buttonOne.addEventListener('click', highScore);
+    mainBox.appendChild(buttonOne);
+
+}
 //ends the code quiz
     // clears questions
     // clears time
@@ -284,6 +307,11 @@ var answerClick = function(event) {
     //when form button clicked save score and initials to local storage
     //restart code quiz button
 
+function highScore () {
+console.log("highScore", highScore)
+var initialData = document.querySelector("input[name='initial']").value;
+
+}
 //high-score function
     //pulls scores and initals from local storage 
     //sorts scores and intials by high score
@@ -302,6 +330,7 @@ function runGame () {
             countDown.textContent = ''; 
             countDown.className = "timer colorchange";
             clearInterval(timeLess);
+            gameOver ()
         }
         else {
             countDown.textContent = timeLeft
@@ -318,3 +347,5 @@ function runGame () {
 //revel some other elements
 };
 
+// Invokes getting started elements
+quizEnter();
