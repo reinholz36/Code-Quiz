@@ -32,7 +32,7 @@ function quizEnter () {
 
     //Answer Result display
     var resultBox = document.createElement("h2");
-    resultBox.textContent = "Wrong Answer!";
+    // resultBox.textContent = "Wrong Answer!";
     resultBox.className = "result";
     mainBox.appendChild(resultBox);
 };
