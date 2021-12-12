@@ -141,6 +141,7 @@ var questionArray = [
 var questionIndex = 0
 var trueCount = 0
 var totalArray = questionArray.length
+var timeLeft = 0
 var cycleQuestions = false
 var totalPoints = {
     points:0 
@@ -210,18 +211,21 @@ function displayQuestion () {
     var buttonOne = document.createElement("button");
     buttonOne.textContent = "1. " + questionArray[questionIndex].choices[0];
     buttonOne.className = "btn small";
+    buttonOne.setAttribute("id", "btn-1")
     buttonOne.addEventListener('click', answerClick)
     mainBox.appendChild(buttonOne);
 
     var buttonTwo = document.createElement("button");
     buttonTwo.textContent = "2. " + questionArray[questionIndex].choices[1];
     buttonTwo.className = "btn small";
+    buttonOne.setAttribute("id", "btn-2")
     buttonTwo.addEventListener('click', answerClick)
     mainBox.appendChild(buttonTwo);
 
     var buttonThree = document.createElement("button");
     buttonThree.textContent = "3. " + questionArray[questionIndex].choices[2];
     buttonThree.className = "btn small";
+    buttonOne.setAttribute("id", "btn-3")
     buttonThree.addEventListener('click', answerClick)
     mainBox.appendChild(buttonThree);
     console.log("buttonThree", buttonThree);
@@ -229,6 +233,7 @@ function displayQuestion () {
     var buttonFour = document.createElement("button");
     buttonFour.textContent = "4. " + questionArray[questionIndex].choices[3];
     buttonFour.className = "btn small";
+    buttonOne.setAttribute("id", "btn-4")
     buttonFour.addEventListener('click', answerClick)
     mainBox.appendChild(buttonFour);
 }
@@ -239,7 +244,7 @@ function displayQuestion () {
 }
 
 var answerValidate = function (number, questionIndex) {
-if (number === questions[questionIndex].correct) {
+if (number === questionArray[questionIndex].correct) {
     var resultBox = document.createElement("h2");
     resultBox.textContent = "Correct Answer!";
     resultBox.className = "result";
@@ -260,16 +265,16 @@ displayQuestion ()
 
 var answerClick = function(event) {
     var answerSelection = event.target;
-    if (answerSelection.matches("btn-1")) {
+    if (event.target.id === "btn-1") {
         answerValidate(0, questionIndex)
     }
-    if (answerSelection.matches("btn-2")) {
+    if (event.target.id === "btn-2") {
         answerValidate(1, questionIndex)
     }
-    if (answerSelection.matches("btn-3")) {
+    if (event.target.id === "btn-3") {
         answerValidate(2, questionIndex)
     }
-    if (answerSelection.matches("btn-4")) {
+    if (event.target.id === "btn-4") {
         answerValidate(3, questionIndex)
     }
     console.log("answerClick", answerClick);
