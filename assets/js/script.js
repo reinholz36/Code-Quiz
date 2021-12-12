@@ -13,10 +13,7 @@ let timeLeft = 75;
 var questionIndex = 0;
 var trueCount = 0;
 var cycleQuestions = false;
-var totalPoints = {
-    points:0 
-};
-
+var totalPoints = 0
 
 //questions array start
 var questionArray = [
@@ -145,9 +142,7 @@ var questionArray = [
 //questions array end
 
 //set variables for array, question cycling, and total points (Note: this section needs to be after array!)
-
 var totalArray = questionArray.length
-
 
 // creates getting started elements
 function quizEnter () {
@@ -183,11 +178,6 @@ quizEnter();
 //clears getting started elements along with after each question is answered
 function clearElement () {
     mainBox.innerHTML = '';
-    // mainBox.removeChild(resultBox);
-    // quizBox.textContent = ""
-    // mainBox.appendChild(quizBox); 
-    // resultBox.textContent = ""
-    // mainBox.appendChild(resultBox); 
 }
 
 //populates quiz questions and elements
@@ -240,32 +230,29 @@ function displayQuestion () {
     buttonFour.addEventListener('click', answerClick)
     mainBox.appendChild(buttonFour);
 }
-//display quesion from array
-//display answer choices from array
-//make the answer choices into buttons
-//add eventlistiners for if true or false function 
 }
 
+//Determines if answer selection matches correct answer from array
 var answerValidate = function (number, questionIndex) {
-if (number === questionArray[questionIndex].correct) {
-    console.log("correct answer", number, questionIndex);
-    var resultContent = document.createElement("h2");
-    resultContent.textContent = "Correct Answer!";
-    resultContent.className = "result";
-    mainBox.appendChild(resultContent);
-    //run a point add function 
-}
-else {
-    var resultBox = document.createElement("h2");
-    resultBox.textContent = "Wrong Answer!";
-    resultBox.className = "result";
-    mainBox.appendChild(resultBox);
-    timeLeft = timeLeft - 10
-}
-cycleQuestions = true
-var delay = setTimeout(displayQuestion, 2000)
-
-
+    if (number === questionArray[questionIndex].correct) {
+        console.log("correct answer", number, questionIndex);
+        var resultContent = document.createElement("h2");
+        resultContent.textContent = "Correct Answer!";
+        resultContent.className = "result";
+        mainBox.appendChild(resultContent);
+        totalPoints = parseInt(totalPoints) + 1; 
+        console.log("point", totalPoints)
+        //run a point add function 
+    }
+    else {
+        var resultBox = document.createElement("h2");
+        resultBox.textContent = "Wrong Answer!";
+        resultBox.className = "result";
+        mainBox.appendChild(resultBox);
+        timeLeft = timeLeft - 10
+    }
+    cycleQuestions = true
+    var delay = setTimeout(displayQuestion, 1000)
 }
 
 var answerClick = function(event) {
@@ -284,25 +271,32 @@ var answerClick = function(event) {
     }
     console.log("answerClick", event.target.id);
 }
-// true or false function from eventlistener button 
-// If true log truecount + 1
-// updated resultBox "Correct Answer!"
-// wait 2 seconds
-// clearElement
-// proceed to next question 
-// If false subtract -10 from timeLeft
-// updated resultBox "Wrong Answer!"
-//clearElement
-// proceed to next question
 
-//Countdown function 
+//ends the code quiz
+    // clears questions
+    // clears time
+    //presents "You've finished the quiz and answered " + total score "correctly! Enter your initials below to save your score"
+    //presents total score 
+    //(optional) present timestamp to save with score and initial
+    //form for entering initials
+    //form stops user from entering blank
+    //submit form button
+    //when form button clicked save score and initials to local storage
+    //restart code quiz button
+
+//high-score function
+    //pulls scores and initals from local storage 
+    //sorts scores and intials by high score
+    //displays sorted to table on high-score.html
+    //(optional) maybe include clear high score button
+
+
+//Main countdown function for code quiz
 function runGame () {
     
     displayQuestion ()
-    
-     
 
-   timeLess = setInterval(() => {
+    timeLess = setInterval(() => {
         if (timeLeft <= 0) {
             console.log("timeLeft", timeLeft);
             countDown.textContent = ''; 
@@ -324,18 +318,3 @@ function runGame () {
 //revel some other elements
 };
 
-
-
-
-
-
-
-
-
-
-console.log("questionArray", questionArray);
-
-
-
-
-console.log("questionArray", questionArray);
