@@ -9,9 +9,9 @@ I built a timed coding quiz with multiple-choice questions that showcases dynami
   * CSS
   * JavaScript
 
-View live site at: 
+View live site at: https://reinholz36.github.io/Code-Quiz/
 
-<a href="">
+<a href="https://reinholz36.github.io/Code-Quiz/">
 <img src="./assets/images/codequiz.jpg" alt="Code quiz header with starter instructions">
 </a>
  
