@@ -10,6 +10,8 @@ var buttonThree = document.getElementById("btn-3");
 var buttonFour = document.getElementById("btn-4");
 var mainBox = document.getElementById("mainContainer");
 var initialBox = document.getElementById("initial");
+var mainScore = document.getElementById("mainScore");
+var scoreBox = document.getElementById("highscoreContainer");
 let timeLeft = 75;
 var questionIndex = 0;
 var trueCount = 0;
@@ -232,7 +234,11 @@ function displayQuestion () {
             buttonFour.addEventListener('click', answerClick)
             mainBox.appendChild(buttonFour);
         }   
+    } else {
+        gameOver ()
     }
+
+
 }
 
 //Determines if answer selection matches correct answer from array
@@ -275,6 +281,7 @@ var answerClick = function(event) {
     console.log("answerClick", event.target.id);
 }
 
+//ends the code quiz
 function gameOver () {
     clearElement()
     clearInterval(timeLess);
@@ -295,17 +302,10 @@ function gameOver () {
     mainBox.appendChild(buttonOne);
 
 }
-//ends the code quiz
-    // clears questions
-    // clears time
-    //presents "You've finished the quiz and answered " + total score "correctly! Enter your initials below to save your score"
-    //presents total score 
-    //(optional) present timestamp to save with score and initial
-    //form for entering initials
+
     //form stops user from entering blank
-    //submit form button
     //when form button clicked save score and initials to local storage
-    //restart code quiz button
+    
 
 function highScore () {
 console.log("highScore", highScore)
