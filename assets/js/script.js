@@ -9,6 +9,13 @@ var buttonTwo = document.getElementById("btn-2");
 var buttonThree = document.getElementById("btn-3");
 var buttonFour = document.getElementById("btn-4");
 var mainBox = document.getElementById("mainContainer");
+let timeLeft = 75;
+var questionIndex = 0;
+var trueCount = 0;
+var cycleQuestions = false;
+var totalPoints = {
+    points:0 
+};
 
 
 //questions array start
@@ -138,14 +145,9 @@ var questionArray = [
 //questions array end
 
 //set variables for array, question cycling, and total points (Note: this section needs to be after array!)
-var questionIndex = 0
-var trueCount = 0
+
 var totalArray = questionArray.length
-var timeLeft = 0
-var cycleQuestions = false
-var totalPoints = {
-    points:0 
-}
+
 
 // creates getting started elements
 function quizEnter () {
@@ -191,7 +193,8 @@ function clearElement () {
 //populates quiz questions and elements
 function displayQuestion () {
     clearElement()
-
+    console.log("we here!", questionIndex);
+    
     if (cycleQuestions === true) {
         questionIndex++;
     }
@@ -218,14 +221,14 @@ function displayQuestion () {
     var buttonTwo = document.createElement("button");
     buttonTwo.textContent = "2. " + questionArray[questionIndex].choices[1];
     buttonTwo.className = "btn small";
-    buttonOne.setAttribute("id", "btn-2")
+    buttonTwo.setAttribute("id", "btn-2")
     buttonTwo.addEventListener('click', answerClick)
     mainBox.appendChild(buttonTwo);
 
     var buttonThree = document.createElement("button");
     buttonThree.textContent = "3. " + questionArray[questionIndex].choices[2];
     buttonThree.className = "btn small";
-    buttonOne.setAttribute("id", "btn-3")
+    buttonThree.setAttribute("id", "btn-3")
     buttonThree.addEventListener('click', answerClick)
     mainBox.appendChild(buttonThree);
     console.log("buttonThree", buttonThree);
@@ -233,7 +236,7 @@ function displayQuestion () {
     var buttonFour = document.createElement("button");
     buttonFour.textContent = "4. " + questionArray[questionIndex].choices[3];
     buttonFour.className = "btn small";
-    buttonOne.setAttribute("id", "btn-4")
+    buttonFour.setAttribute("id", "btn-4")
     buttonFour.addEventListener('click', answerClick)
     mainBox.appendChild(buttonFour);
 }
@@ -245,10 +248,11 @@ function displayQuestion () {
 
 var answerValidate = function (number, questionIndex) {
 if (number === questionArray[questionIndex].correct) {
-    var resultBox = document.createElement("h2");
-    resultBox.textContent = "Correct Answer!";
-    resultBox.className = "result";
-    mainBox.appendChild(resultBox);
+    console.log("correct answer", number, questionIndex);
+    var resultContent = document.createElement("h2");
+    resultContent.textContent = "Correct Answer!";
+    resultContent.className = "result";
+    mainBox.appendChild(resultContent);
     //run a point add function 
 }
 else {
@@ -259,7 +263,8 @@ else {
     timeLeft = timeLeft - 10
 }
 cycleQuestions = true
-displayQuestion ()
+var delay = setTimeout(displayQuestion, 2000)
+
 
 }
 
@@ -277,7 +282,7 @@ var answerClick = function(event) {
     if (event.target.id === "btn-4") {
         answerValidate(3, questionIndex)
     }
-    console.log("answerClick", answerClick);
+    console.log("answerClick", event.target.id);
 }
 // true or false function from eventlistener button 
 // If true log truecount + 1
@@ -295,7 +300,7 @@ function runGame () {
     
     displayQuestion ()
     
-    let timeLeft = 75; 
+     
 
    timeLess = setInterval(() => {
         if (timeLeft <= 0) {
