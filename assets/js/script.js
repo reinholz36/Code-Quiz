@@ -261,7 +261,7 @@ var answerValidate = function (number, questionIndex) {
         timeLeft = timeLeft - 10
     }
     cycleQuestions = true
-    var delay = setTimeout(displayQuestion, 1000)
+    var delay = setTimeout(displayQuestion, 500)
 }
 
 var answerClick = function(event) {
@@ -285,6 +285,7 @@ var answerClick = function(event) {
 function gameOver () {
     clearElement()
     clearInterval(timeLess);
+    countDown.textContent = ''; 
     var quizBox = document.createElement("h2")
     quizBox.textContent = "You've finished the quiz and answered " + totalPoints + " questions correctly! Enter your initials below to save your score";
     quizBox.className = "h2";
