@@ -41,11 +41,26 @@ h2 {
     display: inline-block;
 }
 
-a, .timer {
-    font-size: 2rem;
+a, .timer{
+    font-size: 3rem;
     text-decoration: none;
     list-style: none;
     color: inherit;
+}
+
+.colorchange {
+    font-size: 3rem;
+    text-decoration: none;
+    list-style: none;
+    animation-name: timer;
+    animation-duration: 20s;
+}
+
+@keyframes timer {
+    
+from {color: darkslategray;}
+to {color: red}
+
 }
 
 
@@ -65,6 +80,7 @@ a, .timer {
 
 .small {
     font-size: 1rem;
+    text-align: left;
 }
 
 button:hover {

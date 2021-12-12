@@ -10,6 +10,11 @@ var buttonFour = document.getElementById("btn-4");
 var mainBox = document.getElementById("mainContainer");
 var questionIndex = 0
 var trueCount = 0
+var totalArray = questions.length
+var cycleQuestions = false
+var totalPoints = {
+    points:0 
+}
 
 //questions array start
 var questionArray = [
@@ -181,35 +186,47 @@ function clearElement () {
 //populates quiz questions and elements
 function displayQuestion () {
     clearElement()
-    // quizBox.textContent = questionArray.question
+
+    if (cycleQuestions === true) {
+        questionIndex++;
+    }
+
+    if (questionIndex === totalArray) {
+        clearInterval(timeLess);
+        countDown.textContent = ''; 
+        //add quiz stop function invokation 
+    }
+    
+    else {
     var quizBox = document.createElement("h2")
     quizBox.textContent = questionArray[questionIndex].question;
     quizBox.className = "h2";
     mainBox.appendChild(quizBox); 
 
     var buttonOne = document.createElement("button");
-    buttonOne.textContent = questionArray[questionIndex].choices[0];
+    buttonOne.textContent = "1. " + questionArray[questionIndex].choices[0];
     buttonOne.className = "btn small";
     buttonOne.addEventListener('click', runGame)
     mainBox.appendChild(buttonOne);
 
     var buttonTwo = document.createElement("button");
-    buttonTwo.textContent = questionArray[questionIndex].choices[1];
+    buttonTwo.textContent = "2. " + questionArray[questionIndex].choices[1];
     buttonTwo.className = "btn small";
     buttonTwo.addEventListener('click', runGame)
     mainBox.appendChild(buttonTwo);
 
     var buttonThree = document.createElement("button");
-    buttonThree.textContent = questionArray[questionIndex].choices[2];
+    buttonThree.textContent = "3. " + questionArray[questionIndex].choices[2];
     buttonThree.className = "btn small";
     buttonThree.addEventListener('click', runGame)
     mainBox.appendChild(buttonThree);
 
     var buttonFour = document.createElement("button");
-    buttonFour.textContent = questionArray[questionIndex].choices[3];
+    buttonFour.textContent = "4. " + questionArray[questionIndex].choices[3];
     buttonFour.className = "btn small";
     buttonFour.addEventListener('click', runGame)
     mainBox.appendChild(buttonFour);
+    }
 //display quesion from array
 //display answer choices from array
 //make the answer choices into buttons
@@ -239,12 +256,18 @@ function runGame () {
         if (timeLeft <= 0) {
             console.log("timeLeft", timeLeft);
             countDown.textContent = ''; 
-            countDown.className = "timer";
-            clearInterval(timeLeft);
+            countDown.className = "timer colorchange";
+            clearInterval(timeLess);
         }
         else {
             countDown.textContent = timeLeft
             timeLeft--
+            changeColor()
+        }
+        function changeColor() {
+            if (timeLeft <=14) {
+                countDown.className = "timer colorchange";
+            }
         }
     }, 1000);
 
@@ -255,7 +278,7 @@ function runGame () {
 
 
 
-var list = [1,2,3,4,5]
+
 
 
 
