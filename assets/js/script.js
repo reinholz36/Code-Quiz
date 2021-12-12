@@ -210,25 +210,25 @@ function displayQuestion () {
     var buttonOne = document.createElement("button");
     buttonOne.textContent = "1. " + questionArray[questionIndex].choices[0];
     buttonOne.className = "btn small";
-    buttonOne.addEventListener('click', runGame)
+    buttonOne.addEventListener('click', answerArray)
     mainBox.appendChild(buttonOne);
 
     var buttonTwo = document.createElement("button");
     buttonTwo.textContent = "2. " + questionArray[questionIndex].choices[1];
     buttonTwo.className = "btn small";
-    buttonTwo.addEventListener('click', runGame)
+    buttonTwo.addEventListener('click', answerArray)
     mainBox.appendChild(buttonTwo);
 
     var buttonThree = document.createElement("button");
     buttonThree.textContent = "3. " + questionArray[questionIndex].choices[2];
     buttonThree.className = "btn small";
-    buttonThree.addEventListener('click', runGame)
+    buttonThree.addEventListener('click', answerArray)
     mainBox.appendChild(buttonThree);
 
     var buttonFour = document.createElement("button");
     buttonFour.textContent = "4. " + questionArray[questionIndex].choices[3];
     buttonFour.className = "btn small";
-    buttonFour.addEventListener('click', runGame)
+    buttonFour.addEventListener('click', answerArray)
     mainBox.appendChild(buttonFour);
 }
 //display quesion from array
@@ -237,6 +237,38 @@ function displayQuestion () {
 //add eventlistiners for if true or false function 
 }
 
+var answerValidate = function (number, questionIndex) {
+if (number === questions[questionIndex].correct) {
+    resultBox.textContent = "";
+    resultBox.textContent = "Correct Answer!";
+    //run a point add function 
+}
+else {
+    resultBox.textContent = "";
+    resultBox.textContent = "Wrong Answer!";
+    timeLeft = timeLeft - 10
+}
+cycleQuestions = true
+displayQuestion ()
+
+}
+
+var answerArray = function(event) {
+    var answerSelection = event.target;
+    if (answerSelection.matches("btn-1")) {
+        answerValidate(0, questionIndex)
+    }
+    if (answerSelection.matches("btn-1")) {
+        answerValidate(1, questionIndex)
+    }
+    if (answerSelection.matches("btn-1")) {
+        answerValidate(2, questionIndex)
+    }
+    if (answerSelection.matches("btn-1")) {
+        answerValidate(3, questionIndex)
+    }
+    console.log("answerArray", answerArray);
+}
 // true or false function from eventlistener button 
 // If true log truecount + 1
 // updated resultBox "Correct Answer!"
