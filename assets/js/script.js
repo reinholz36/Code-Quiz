@@ -210,25 +210,26 @@ function displayQuestion () {
     var buttonOne = document.createElement("button");
     buttonOne.textContent = "1. " + questionArray[questionIndex].choices[0];
     buttonOne.className = "btn small";
-    buttonOne.addEventListener('click', answerArray)
+    buttonOne.addEventListener('click', answerClick)
     mainBox.appendChild(buttonOne);
 
     var buttonTwo = document.createElement("button");
     buttonTwo.textContent = "2. " + questionArray[questionIndex].choices[1];
     buttonTwo.className = "btn small";
-    buttonTwo.addEventListener('click', answerArray)
+    buttonTwo.addEventListener('click', answerClick)
     mainBox.appendChild(buttonTwo);
 
     var buttonThree = document.createElement("button");
     buttonThree.textContent = "3. " + questionArray[questionIndex].choices[2];
     buttonThree.className = "btn small";
-    buttonThree.addEventListener('click', answerArray)
+    buttonThree.addEventListener('click', answerClick)
     mainBox.appendChild(buttonThree);
+    console.log("buttonThree", buttonThree);
 
     var buttonFour = document.createElement("button");
     buttonFour.textContent = "4. " + questionArray[questionIndex].choices[3];
     buttonFour.className = "btn small";
-    buttonFour.addEventListener('click', answerArray)
+    buttonFour.addEventListener('click', answerClick)
     mainBox.appendChild(buttonFour);
 }
 //display quesion from array
@@ -239,13 +240,17 @@ function displayQuestion () {
 
 var answerValidate = function (number, questionIndex) {
 if (number === questions[questionIndex].correct) {
-    resultBox.textContent = "";
+    var resultBox = document.createElement("h2");
     resultBox.textContent = "Correct Answer!";
+    resultBox.className = "result";
+    mainBox.appendChild(resultBox);
     //run a point add function 
 }
 else {
-    resultBox.textContent = "";
+    var resultBox = document.createElement("h2");
     resultBox.textContent = "Wrong Answer!";
+    resultBox.className = "result";
+    mainBox.appendChild(resultBox);
     timeLeft = timeLeft - 10
 }
 cycleQuestions = true
@@ -253,21 +258,21 @@ displayQuestion ()
 
 }
 
-var answerArray = function(event) {
+var answerClick = function(event) {
     var answerSelection = event.target;
     if (answerSelection.matches("btn-1")) {
         answerValidate(0, questionIndex)
     }
-    if (answerSelection.matches("btn-1")) {
+    if (answerSelection.matches("btn-2")) {
         answerValidate(1, questionIndex)
     }
-    if (answerSelection.matches("btn-1")) {
+    if (answerSelection.matches("btn-3")) {
         answerValidate(2, questionIndex)
     }
-    if (answerSelection.matches("btn-1")) {
+    if (answerSelection.matches("btn-4")) {
         answerValidate(3, questionIndex)
     }
-    console.log("answerArray", answerArray);
+    console.log("answerClick", answerClick);
 }
 // true or false function from eventlistener button 
 // If true log truecount + 1
@@ -300,7 +305,7 @@ function runGame () {
             changeColor()
         }
         function changeColor() {
-            if (timeLeft <=14) {
+            if (timeLeft <=19) {
                 countDown.className = "timer colorchange";
             }
         }
