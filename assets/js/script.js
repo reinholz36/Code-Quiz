@@ -17,6 +17,7 @@ var questionIndex = 0;
 var trueCount = 0;
 var cycleQuestions = false;
 var totalPoints = 0;
+var initialData = '';
 var scoreArray = [];
 
 //questions array start
@@ -188,7 +189,6 @@ function displayQuestion () {
 
     if (timeLeft > 0) {
         clearElement()
-        console.log("we here!", questionIndex);
         
         if (cycleQuestions === true) {
             questionIndex++;
@@ -225,7 +225,6 @@ function displayQuestion () {
             buttonThree.setAttribute("id", "btn-3")
             buttonThree.addEventListener('click', answerClick)
             mainBox.appendChild(buttonThree);
-            console.log("buttonThree", buttonThree);
 
             var buttonFour = document.createElement("button");
             buttonFour.textContent = "4. " + questionArray[questionIndex].choices[3];
@@ -250,8 +249,6 @@ var answerValidate = function (number, questionIndex) {
         resultContent.className = "result";
         mainBox.appendChild(resultContent);
         totalPoints = parseInt(totalPoints) + 1; 
-        console.log("point", totalPoints)
-        //run a point add function 
     }
     else {
         var resultBox = document.createElement("h2");
@@ -299,7 +296,6 @@ function gameOver () {
     initialBox.setAttribute("id", "init")
     initialBox.setAttribute("name", "initial");
     mainBox.appendChild(initialBox); 
-    console.log("initialBox", initialBox)
     
     //button for submitting initials
     var buttonOne = document.createElement("button");
@@ -321,18 +317,20 @@ function highScore () {
   if (initialData === "" || !isNaN(initialData) || initialData.length > 2 || initialData.length < 2) {
         alert("Enter two initials below and select the button to save your score")
     } else {
-        console.log("initialData", initialData)
-        console.log("This is finally working!")
+        
+        var combinedScoreObj = {
+            name: initialData,
+            score: totalPoints
+        }
+
+        scoreArray.push(combinedScoreObj);
+        localStorage["scoreArray"] = JSON.stringify(scoreArray);
         window.location.href="./high-score.html";
     }
     }
 
 
-//high-score function
-    //pulls scores and initals from local storage 
-    //sorts scores and intials by high score
-    //displays sorted to table on high-score.html
-    //(optional) maybe include clear high score button
+
 
 
 //Main countdown function for code quiz
@@ -342,7 +340,6 @@ function runGame () {
 
     timeLess = setInterval(() => {
         if (timeLeft <= 0) {
-            console.log("timeLeft", timeLeft);
             countDown.textContent = ''; 
             countDown.className = "timer colorchange";
             clearInterval(timeLess);
