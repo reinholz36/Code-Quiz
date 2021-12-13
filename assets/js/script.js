@@ -286,15 +286,22 @@ function gameOver () {
     clearElement()
     clearInterval(timeLess);
     countDown.textContent = ''; 
+
+    //displays user score
     var quizBox = document.createElement("h2")
-    quizBox.textContent = "You've finished the quiz and answered " + totalPoints + " questions correctly! Enter your initials below to save your score";
+    quizBox.textContent = "You've finished the quiz and answered " + totalPoints + " questions correctly! Enter two initials below and select the button to save your score";
     quizBox.className = "h2";
     mainBox.appendChild(quizBox); 
+
+    //input for entering initials
     var initialBox = document.createElement("input")
     initialBox.className = "input";
+    initialBox.setAttribute("id", "init")
     initialBox.setAttribute("name", "initial");
     mainBox.appendChild(initialBox); 
-
+    console.log("initialBox", initialBox)
+    
+    //button for submitting initials
     var buttonOne = document.createElement("button");
     buttonOne.textContent = "Submit Score and Initials"
     buttonOne.className = "btn small";
@@ -307,12 +314,20 @@ function gameOver () {
     //form stops user from entering blank
     //when form button clicked save score and initials to local storage
     
-
+//checks if initials have been entered correctly 
 function highScore () {
-console.log("highScore", highScore)
-var initialData = document.querySelector("input[name='initial']").value;
+    var initialData = document.querySelector("input[name='initial']").value;
 
-}
+  if (initialData === "" || !isNaN(initialData) || initialData.length > 2 || initialData.length < 2) {
+        alert("Enter two initials below and select the button to save your score")
+    } else {
+        console.log("initialData", initialData)
+        console.log("This is finally working!")
+        window.location.href="./high-score.html";
+    }
+    }
+
+
 //high-score function
     //pulls scores and initals from local storage 
     //sorts scores and intials by high score

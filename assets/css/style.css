@@ -41,7 +41,7 @@ h2, input, .highscore {
     display: inline-block;
 }
 
-a, .timer{
+a, .timer, .cell{
     font-size: 3rem;
     text-decoration: none;
     list-style: none;
