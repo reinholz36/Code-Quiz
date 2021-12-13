@@ -322,9 +322,9 @@ function highScore () {
             name: initialData,
             score: totalPoints
         }
-
-        scoreArray.push(combinedScoreObj);
-        localStorage["scoreArray"] = JSON.stringify(scoreArray);
+        var savedScores = JSON.parse(localStorage.getItem("scoreArray")) ?? [];
+        savedScores.push(combinedScoreObj);
+        localStorage["scoreArray"] = JSON.stringify(savedScores);
         window.location.href="./high-score.html";
     }
     }
